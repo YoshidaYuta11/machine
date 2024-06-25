@@ -19,7 +19,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="company_id" class="form-label">会社</label>
+                                <label for="company_id" class="form-label">メーカー</label>
                                 <select class="form-select" id="company_id" name="company_id">
                                     @foreach($companies as $company)
                                         <option value="{{ $company->id }}" {{ $product->company_id == $company->id ? 'selected' : '' }}>{{ $company->company_name }}</option>
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="price" class="form-label">金額</label>
+                                <label for="price" class="form-label">価格</label>
                                 <input type="number" class="form-control" id="price" name="price" value="{{ $product->price }}" required>
                             </div>
 
@@ -45,7 +45,9 @@
                             <div class="mb-3">
                                 <label for="img_path" class="form-label">商品画像:</label>
                                 <input id="img_path" type="file" name="img_path" class="form-control">
-                                <img src="{{ asset($product->img_path) }}" alt="商品画像" class="product-image">
+                                @if ($product->img_path)
+                                    <img src="{{ asset($product->img_path) }}" alt="商品画像" class="product-image" width="100">
+                                @endif
                             </div>
 
                             <button type="submit" class="btn btn-primary">変更内容で更新する</button>
@@ -56,4 +58,3 @@
         </div>
     </div>
 @endsection
-

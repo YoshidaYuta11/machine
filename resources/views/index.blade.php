@@ -6,7 +6,7 @@
 
     <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">商品新規登録</a>
 
-
+ <label for="company_id" class="form-label">メーカーで検索:</label>
 
     <div class="products mt-5">
         <h2>商品情報</h2>

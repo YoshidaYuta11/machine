@@ -13,8 +13,7 @@
         <dt class="col-sm-3">商品画像</dt>
         <dd class="col-sm-9">{{ $product->product_name }}</dd>
 
-        <dt class="col-sm-3">メーカー</dt>
-        <dd class="col-sm-9">{{ $product->company->name }}</dd>
+        <p>メーカー: {{ $product->company->company_name }}</p>
 
         <dt class="col-sm-3">価格</dt>
         <dd class="col-sm-9">{{ $product->price }}</dd>

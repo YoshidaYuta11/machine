@@ -1,12 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// "Route"というツールを使うために必要な部品を取り込んでいます。
 use App\Http\Controllers\ProductController;
-// ProductControllerに繋げるために取り込んでいます
 use Illuminate\Support\Facades\Auth;
-// "Auth"という部品を使うために取り込んでいます。この部品はユーザー認証（ログイン）に関する処理を行います
-
 
 Route::get('/', function () {
     if (Auth::check()) {
@@ -19,7 +15,22 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('products', ProductController::class);
+    // Index
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    
+    // Create
+    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
+
+    // Show
+    Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
+
+    // Edit
+    Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
+
+    // Destroy
+    Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
